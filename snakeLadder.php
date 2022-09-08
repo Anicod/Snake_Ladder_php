@@ -9,6 +9,7 @@
 <body>
     <?php
     define($playerAPosition, 0);
+    echo "<h3>Player started intially with $playerAPosition position</h3>";
     $dice = rand(1, 6);
     ?>
 </body>
