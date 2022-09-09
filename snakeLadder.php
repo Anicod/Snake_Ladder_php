@@ -9,29 +9,44 @@
 <body>
     <?php
     $playerAPosition = 0;
-    define(NO_PLAY, 0);
-    define(LADDER, 1);
-    define(SNAKE, 2);
+    define("NO_PLAY", 0);
+    define("LADDER", 1);
+    $diceCount = 0;
     echo "<h3>Player started intially with $playerAPosition position</h3>";
     $checkStatus = rand(0, 2);
+   while($playerAPosition != 100){
     switch($checkStatus){
         case NO_PLAY:
-            echo "player will be at same position $playerAPosition";
+            echo "<p>player will be at same position $playerAPosition</p>";
             break;
         case LADDER:
             $dice = rand(1, 6);
-            $playerAposition = $playerAPosition + $dice;
-            echo "player steped ladder by  $dice";
-            echo "current position of the player is $playerAPosition";
+            echo "<p>player steped ladder by  $dice</p>";
+            $playerAPosition = $playerAPosition + $dice;
+             if($playerAPosition>100){
+                 $playerAPosition = $playerAPosition-$dice;
+                 echo "<p>current position of the player is $playerAPosition</p>";
+             }
+             else{
+                 echo "<p>current position of the player is $playerAPosition</p>";
+             }
+             $diceCount++;  
             break;
-        case SNAKE:
+        default:
             $dice = rand(1, 6);
-            $playerAposition = $playerAPosition - $dice;
-            echo "player step down by  $dice";
-            echo "current position of the player is $playerAPosition";
-            break;
-            
+            echo "<p>player step down by  $dice</P>";
+            $playerAPosition = $playerAPosition - $dice;
+            if($playerAPosition<0){
+                $playerAPosition = 0;
+                echo "<p>current position of the player is $playerAPosition</p>";
+            }
+            else{
+                echo "<p>current position of the player is $playerAPosition</p>";
+            }  
+            $diceCount++;
     }
+   }
+   echo $diceCount;
     ?>
 </body>
 </html>
